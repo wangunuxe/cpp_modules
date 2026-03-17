@@ -57,6 +57,7 @@ void MateriaSource::learnMateria(AMateria* m)
 		if(_template[i] == NULL)
 		{
 			_template[i] = m->clone();
+			delete m;//This is why i found the leak in the first test
 			return;
 		}
 	}

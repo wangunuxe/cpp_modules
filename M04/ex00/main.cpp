@@ -15,7 +15,7 @@ int main()
 	meta->makeSound();
 
 	delete meta;
-	delete j;
+	delete j;//call the ~Dog()
 	delete i;
 
 	std::cout << "\n===== WrongAnimal and WrongCat =====" << std::endl;
