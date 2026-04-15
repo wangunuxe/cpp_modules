@@ -151,6 +151,35 @@ In this case, the following constructors of ScavTrap and FragTrap are ignored:
 				ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name);
 				FragTrap::FragTrap() : ClapTrap("Default");
 				FragTrap::FragTrap(std::string Name) : ClapTrap(Name)
+
+
+M04/ex03:
+Overall relationship between AMateria, Character and MateriaSource:
+
+           ┌──────────────┐
+           │  AMateria    │   ← What a Materia IS
+           │ (Ice / Cure) │
+           └──────┬───────┘
+                  │ clone()
+                  │
+        learn      ▼
+┌──────────────┐  store templates  ┌────────────────┐
+│ MateriaSource│────────────────▶ │ Materia models │
+│ (IMateriaSrc)│                  │   (max 4)      │
+└──────┬───────┘                  └────────────────┘
+       │ createMateria("ice")
+       │
+       ▼
+   new Ice / new Cure   ← created by clone()
+       │
+       ▼
+┌──────────────┐
+│  Character   │   ← owner & user
+│ (ICharacter) │
+└──────────────┘
+
+
+
 ===== useful links =====
 
 https://github.com/mharriso/school21-checklists/blob/master/ng_4_cpp_module_00.pdf
