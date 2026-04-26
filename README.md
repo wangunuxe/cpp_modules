@@ -1,191 +1,77 @@
-===== key points =====
+# cpp_modules
 
-M01/ex00/randomChump.cpp: 
+> A 42 School C++ series — 10 modules progressively covering core C++ concepts from the ground up.
 
-			void	randomChump(std::string name)
-			{
-					Zombie::Zombie(name); 
-						 ->The constructors are not callable functions; they only run when an object is created; without a variable, no object exists
-			
-				Zombie z(name);
-						-> An object z of class Zombie is created, and its string attribute name is initialized with the value passed as the parameter name.
-							When you write:
-							Zombie z(name);
-							C++ does the following:
-								 1️-> Allocates memory for object z
-								 2️-> Calls the constructor Zombie(std::string)
-								 3-> Initializes the member variable name with the argument name
-								4️-> The object z now exists and is fully initialized
-			z.announce();
-			 }
-M01/ex00/newZombie.cpp:
-		The "new" is a keyword that represents the dynamic allocation operator;
+---
 
-M01/ex01/zombieHorde.cpp:
-	"new" allocates memory on the heap and constructs object(s) in that memory
-	->for single object:
-		Type* ptr = new Type(constrictor_arguments)
-	->for the array of objects
-		Type *ptr = new Type[number_of_objects] 
-		
-		Zombie* z = new Zombie(name);
-		What happens exactly:
-			1 Heap memory for N Zombies is allocated in one block
-			2️ The "default constructor" is called N times
-			3️ The address of the first Zombie is returned
-			4️ Stored in pointer horde
-M01/ex05/HarL.cpp:
-*** The pointer to normal function and The pointer to member function
-1. Pointer to normal function:
-	char* f(int x);
-	char*(*ptr)(int) = f; //**the f can decay into &f
-	
-	we can call:
-	ptr(42); //correct
-	(*ptr)(42); //correct, put the *ptr in brakets
+## 📋 Overview
 
-3. Pointer to member function:
-	class HarL
-	{
-	public:
-	    char* f(int x);
-	};
-	
-	char* HarL::f(int x);
-	char* (HarL::*ptr)(int) = &HarL::f; //the member function HarL::f can not decay to pointer 
-	HarL::ptr(42) // x
-	(object.*ptr)(42)// correct, put the object.*ptr in brackets
-M02/ex00:
-*** Fixed-point number in mathematics***
-    Fixed-point number is a number with a decimal point. The position of the decimal point is fixed by the definition and by design.
-    ** In programming, a fixed-point number is stored using an integer type.(The integer is the representation, not the number itself.)
-        *stored_integer = real_value × scaling_factor
-        *scaling_factor = 2^fractionalBits
-    * The fixed scaling factor: A number by which we multiply or divide to change how a value is interpreted. In the project, We store values multiplied by 256, BUT We read values divided by 256>
-    * 
-    |----|----|----|----|----|----|----|----|
-    1/2 1/4  1/8 1/16 1/32 1/64 1/128 1/256
+The CPP modules are a series of 10 projects designed to introduce C++ and Object-Oriented Programming. Each module builds on the previous one, covering increasingly advanced language features.
 
-M02/ex00/Fixed.hpp
-***Fixed& operator=(const Fixed& other);***
-	**declare the copy assignment operator; This function is called when the = operator is used on this class.
-	**"operator=" the name of the function;
-	** "const Fixed& other": the paramater is the right-hand side of the assignment. "a = b"
-	**"Fixed&" : the return of the function
+> All modules are written in **C++98**.
 
-*** The difference between COPY CONSTRUCTOR and COPY ASSIGNMENT:
-	** COPY CONSTRUCTOR is for "Cloning"
-		Fixed a;
-		Fixed b(a);
-		or
-		Fixed b = a;
-		*Fixed b does not exist yet, we use Fixed a to create b;
-		*Constructor : allocate + initialize
-	** COPY ASSIGNMENT is for "overwriting"
-		Fixed a;
-		Fixed b;
-		b = a;
-		*Fixed b already exists, we use Fixed a to overwrite b;
-		*assignment: reuse the existing memory
+---
 
-*** The "const" at the end of "int  getRawBits(void) const" means :
-	This function will not modify the object(*this)
+## 📦 Modules
 
-M02/ex03/bsp.cpp
-*** cross product ***
-** In Three-dimensional space:
-In mathematics, the cross product is an operation defined for two vectors in three-dimensional space.
-Given two vectors a and b, the cross product is written as:
-	a × b
-The result is a new vector, which has three key meanings:
-	* Direction: The vector a × b is perpendicular (orthogonal) to both a and b.:
-			That means:if a and b lie in a plane,if a and b lie in a plane,
-	* Length
-	* Orientation
-** In Two-dimensional space:
-	We use cross product because its sign tells us the relative orientation of three points (left / right / aligned).
+### Module 00 — Namespaces, Classes, Member Functions
+Introduction to the basics of C++: namespaces, classes, member functions, `stdio` streams, initialization lists, `static` and `const` keywords.
 
-	the cross product tells us:
-		positive → counter-clockwise → left side
-		negative → clockwise → right side
-		zero → collinear
-	This is called the orientation test.
-				The code:
-				(b - a) × (p - a)
-				because:
-					a = (ax, ay)
-					b = (bx, by)
-					p = (px, py)
-				get a vector (a direction)
-					b - a = (bx - ax, by - ay)
-					p - a = (px - ax, py - ay)
+---
 
-				because: for 2D vertors:
-					u = (ux, uy)
-					v = (vx, vy)
-				The 2D cross product is defined as:
-					u × v = ux * vy - uy * vx
+### Module 01 — Memory Allocation, References, Pointers to Members
+Heap vs stack memory allocation, references, pointers to members, and an introduction to file streams (`fstream`).
 
-				so:
-					(b - a) × (p - a)
-					= (bx - ax) * (py - ay) - (by - ay) * (px - ax)
+---
 
-"*" in this formula × does not mean multiplication like numbers.
-It means : Compare these two arrows and tell me how they turn relative to each other.
+### Module 02 — Ad-hoc Polymorphism, Operator Overloading, Orthodox Canonical Form
+Operator overloading, fixed-point number representation, and the Orthodox Canonical Class Form (default constructor, copy constructor, copy assignment operator, destructor).
 
-M03/ex01/ScavTrap.cpp
-***Inheritance***
+---
 
-			ScavTrap::ScavTrap() : _Name("Default"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
-			{
-				std::cout << "ClapTrap : Default constructor called" << std::endl;
-			} //fault!
+### Module 03 — Inheritance
+Class inheritance, access specifiers, and the diamond problem. Introduction to base and derived class relationships.
 
-A derived class constructor initializer list can OBLY initialize: Its own member variables and Base classes;
-It can not initialize members that belong to the base class directly;
+---
 
-***virtual***
-A virtual base class (ClapTrap) is contructed by the most-derived class(DiamondTrap) only;
-In this case, the following constructors of ScavTrap and FragTrap are ignored:
-				ScavTrap::ScavTrap() : ClapTrap("Default");
-				ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name);
-				FragTrap::FragTrap() : ClapTrap("Default");
-				FragTrap::FragTrap(std::string Name) : ClapTrap(Name)
+### Module 04 — Subtype Polymorphism, Abstract Classes, Interfaces
+Virtual functions, pure virtual functions, abstract classes, and interfaces. Introduction to runtime polymorphism.
 
+---
 
-M04/ex03:
-Overall relationship between AMateria, Character and MateriaSource:
+### Module 05 — Repetition and Exceptions
+Exception handling with `try`, `catch`, and `throw`. Custom exception classes inheriting from `std::exception`.
 
-           ┌──────────────┐
-           │  AMateria    │   ← What a Materia IS
-           │ (Ice / Cure) │
-           └──────┬───────┘
-                  │ clone()
-                  │
-        learn      ▼
-┌──────────────┐  store templates  ┌────────────────┐
-│ MateriaSource│────────────────▶ │ Materia models │
-│ (IMateriaSrc)│                  │   (max 4)      │
-└──────┬───────┘                  └────────────────┘
-       │ createMateria("ice")
-       │
-       ▼
-   new Ice / new Cure   ← created by clone()
-       │
-       ▼
-┌──────────────┐
-│  Character   │   ← owner & user
-│ (ICharacter) │
-└──────────────┘
+---
 
+### Module 06 — C++ Casts
+The four C++ cast operators: `static_cast`, `dynamic_cast`, `reinterpret_cast`, and `const_cast`. Type conversion and serialization.
 
+---
 
-===== useful links =====
+### Module 07 — C++ Templates
+Function templates and class templates. Generic programming and template specialization.
 
-https://github.com/mharriso/school21-checklists/blob/master/ng_4_cpp_module_00.pdf
+---
 
-https://github.com/madebypixel02/CPP-Module-01
+### Module 08 — Templated Containers, Iterators, Algorithms
+STL containers (`std::vector`, `std::list`, `std::map`), iterators, and STL algorithms. Writing generic functions that work with any container.
 
-https://42-cursus.gitbook.io/guide/4-rank-04/cpp-00-04-doing/cpp02
+---
 
-https://gitlab.com/madebypixel02/CPP-Module-04/-/blob/main/ex03/Character.hpp?ref_type=heads
+### Module 09 — STL
+Advanced use of the Standard Template Library. Practical application of containers and algorithms to solve real problems efficiently.
+
+---
+
+## 🛠️ Compilation
+
+Each exercise can be compiled with:
+
+```bash
+c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o [output]
+```
+
+---
+
+*42 Paris — CPP Modules 00–09*
