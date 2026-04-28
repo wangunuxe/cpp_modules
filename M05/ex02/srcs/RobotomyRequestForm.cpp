@@ -22,6 +22,8 @@ void RobotomyRequestForm::executeAction() const {
     std::cout << "Drrrrrr... BZZZZZT... *drilling noises*" << std::endl;
 
     // 50% success rate
+    // srand(time(NULL)) : Set up the randomness — call once in main()
+    // rand(): Get one random number 
     std::srand(std::time(NULL));
     if (std::rand() % 2 == 0)
         std::cout << _target << " has been robotomized successfully!" << std::endl;

@@ -8,7 +8,7 @@ Intern::Intern(const Intern&) {}
 Intern& Intern::operator=(const Intern&) { return *this; }
 Intern::~Intern() {}
 
-// ── 每种表单对应一个工厂函数 ──────────────────────────────
+
 static AForm* makeShrubbery(const std::string& target) {
     return new ShrubberyCreationForm(target);
 }
@@ -19,10 +19,11 @@ static AForm* makePardon(const std::string& target) {
     return new PresidentialPardonForm(target);
 }
 
-// ── 函数指针类型 ──────────────────────────────────────────
+//typedef gives a nickname to an existing type
+
 typedef AForm* (*FormFactory)(const std::string&);
 
-// ── 名字 → 工厂函数 的映射表（替代 if/else 链）────────────
+
 AForm* Intern::makeForm(const std::string& formName,
                         const std::string& target) const
 {
