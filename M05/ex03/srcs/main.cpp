@@ -71,7 +71,6 @@ int main() {
         AForm* ppf = someRandomIntern.makeForm("presidential pardon", "Arthur");
         if (ppf) delete ppf;
 
-        // 测试未知表单名
         AForm* unknown = someRandomIntern.makeForm("coffee form", "nobody");
         if (unknown) delete unknown;
     }
