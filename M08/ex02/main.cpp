@@ -3,6 +3,11 @@
 #include <stack>
 #include "MutantStack.hpp"
 
+// De base, std::stack ne permet d'accéder qu'au sommet (push/pop/top), on ne peut pas parcourir son contenu. Le but de cet exercice est d'exposer les itérateurs du deque sous-jacent via l'héritage, pour que le stack puisse être parcouru comme un vector ou une list
+
+// push — ajouter un élément au sommet
+// pop — supprimer l'élément au sommet
+// top — consulter l'élément au sommet sans le supprimer
 int main()
 {
     // --- Subject example with MutantStack ---
@@ -22,8 +27,8 @@ int main()
         mstack.push(737);
         mstack.push(0);
 
-        MutantStack<int>::iterator it  = mstack.begin();
-        MutantStack<int>::iterator ite = mstack.end();
+        MutantStack<int>::iterator it  = mstack.begin(); //fist
+        MutantStack<int>::iterator ite = mstack.end(); // last + 1
 
         ++it;
         --it;

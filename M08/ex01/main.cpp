@@ -15,8 +15,8 @@ int main()
         sp.addNumber(17);
         sp.addNumber(9);
         sp.addNumber(11);
-        std::cout << "shortestSpan: " << sp.shortestSpan() << std::endl; // 2
-        std::cout << "longestSpan:  " << sp.longestSpan()  << std::endl; // 14
+        std::cout << "shortestSpan: " << sp.shortestSpan() << std::endl;
+        std::cout << "longestSpan:  " << sp.longestSpan()  << std::endl;
     }
 
     // --- Exception: too many elements ---
@@ -52,11 +52,11 @@ int main()
         Span big(10000);
 
         std::vector<int> nums;
-        nums.reserve(10000);
+        nums.reserve(10000); // Réserver de l'espace mémoire à l'avance
         for (int i = 0; i < 10000; ++i)
             nums.push_back(std::rand());
 
-        big.addRange(nums.begin(), nums.end());
+        big.addRange(nums.begin(), nums.end());//Ajouter tous les éléments de nums, du début à la fin, dans le Span
 
         std::cout << "shortestSpan: " << big.shortestSpan() << std::endl;
         std::cout << "longestSpan:  " << big.longestSpan()  << std::endl;
@@ -67,7 +67,10 @@ int main()
     {
         Span sp(3);
         std::vector<int> v;
-        v.push_back(1); v.push_back(2); v.push_back(3); v.push_back(4);
+        v.push_back(1); 
+        v.push_back(2); 
+        v.push_back(3); 
+        v.push_back(4);
         try {
             sp.addRange(v.begin(), v.end()); // should throw
         } catch (std::exception &e) {

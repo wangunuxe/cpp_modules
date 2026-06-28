@@ -65,3 +65,12 @@ int main()
 
     return 0;
 }
+
+// vector -> Un tableau dynamique. On peut accéder à n'importe quel élément directement avec v[i], et il s'agrandit automatiquement quand on ajoute des éléments.
+// list -> Une liste doublement chaînée. On peut facilement ajouter ou supprimer des éléments n'importe où, mais on ne peut pas accéder directement à l[i]
+
+// stack -> Une pile, dernier entré, premier sorti (LIFO). On ne peut toucher qu'au sommet : push, pop, top. Pas d'itération possible — c'est justement le problème qu'on résout dans l'ex02.
+
+// map -> Une collection de paires clé-valeur, automatiquement triée par clé. Chaque clé est unique.
+
+// deque -> "double-ended queue", une file à deux bouts. C'est comme un vector, mais on peut ajouter ou supprimer des éléments des deux côtés rapidement.

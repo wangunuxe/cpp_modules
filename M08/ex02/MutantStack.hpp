@@ -4,8 +4,6 @@
 # include <stack>
 # include <deque>
 
-// MutantStack wraps std::stack and exposes iterators
-// by reaching into the underlying container (std::stack::c).
 template <typename T>
 class MutantStack : public std::stack<T>
 {

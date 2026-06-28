@@ -16,3 +16,4 @@ typename T::iterator easyfind(T &c, int value)
 }
 
 #endif
+

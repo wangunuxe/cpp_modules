@@ -14,7 +14,6 @@ public:
     Span &operator=(const Span &other);
     ~Span();
 
-    // Add a single number; throws if already full
     void addNumber(int n);
 
     // Add a range of numbers via iterators; throws if range exceeds capacity
@@ -27,10 +26,7 @@ public:
         _data.insert(_data.end(), first, last);
     }
 
-    // Return the smallest difference between any two stored numbers
     int shortestSpan() const;
-
-    // Return the largest difference between any two stored numbers
     int longestSpan() const;
 
 private:
