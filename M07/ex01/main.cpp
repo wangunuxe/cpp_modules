@@ -2,9 +2,6 @@
 #include <string>
 #include "iter.hpp"
 
-// --- Helper functions used as the third parameter to iter ---
-
-// Prints any element followed by a newline (takes const ref, works for read-only arrays)
 template <typename T>
 void printElem(T const &elem)
 {
